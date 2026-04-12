@@ -19,6 +19,7 @@ cookiecutter --version
 
 ## Step 3: Create Core Template Structure
 
+### Structure
 ```text
 drf-app-template
 ├── cookiecutter.json
@@ -30,6 +31,8 @@ drf-app-template
     │   ├── __init__.py
     │   ├── base
     │   │   ├── __init__.py
+    │   │   ├── selector.py
+    │   │   ├── service.py
     │   │   └── view.py
     │   └── mixins
     │       ├── __init__.py
@@ -54,6 +57,12 @@ drf-app-template
         ├── __init__.py
         └── {{cookiecutter.app_name}}_view.py
 
+```
+### Commands for making the Structure
+
+```bash
+mkdir -p "{{cookiecutter.app_name}}"/{common/{base,mixins},models,selectors,serializers,services,tasks,tests,views} && \
+touch cookiecutter.json "{{cookiecutter.app_name}}"/{__init__.py,admin.py,apps.py,urls.py,common/__init__.py,common/base/{__init__.py,selector.py,service.py,view.py},common/mixins/{__init__.py,soft_delete.py,timestamp.py},models/__init__.py,selectors/{__init__.py,"{{cookiecutter.app_name}}_selector.py"},serializers/__init__.py,services/{__init__.py,"{{cookiecutter.app_name}}_service.py"},tasks/__init__.py,tests/__init__.py,views/{__init__.py,"{{cookiecutter.app_name}}_view.py"}}
 ```
 
 ## Step 4: Apps Config (Dynamic)
