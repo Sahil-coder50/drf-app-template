@@ -61,8 +61,8 @@ drf-app-template
 ### Commands for making the Structure
 
 ```bash
-mkdir -p "{{cookiecutter.app_name}}"/{common/{base,mixins},models,selectors,serializers,services,tasks,tests,views} && \
-touch cookiecutter.json "{{cookiecutter.app_name}}"/{__init__.py,admin.py,apps.py,urls.py,common/__init__.py,common/base/{__init__.py,selector.py,service.py,view.py},common/mixins/{__init__.py,soft_delete.py,timestamp.py},models/__init__.py,selectors/{__init__.py,"{{cookiecutter.app_name}}_selector.py"},serializers/__init__.py,services/{__init__.py,"{{cookiecutter.app_name}}_service.py"},tasks/__init__.py,tests/__init__.py,views/{__init__.py,"{{cookiecutter.app_name}}_view.py"}}
+mkdir -p "{{cookiecutter.app_name}}"/{common/{base,mixins},models,migrations,selectors,serializers,services,tasks,tests,views} && \
+touch cookiecutter.json "{{cookiecutter.app_name}}"/{__init__.py,admin.py,apps.py,urls.py,common/__init__.py,common/base/{__init__.py,selector.py,service.py,view.py},common/mixins/{__init__.py,soft_delete.py,timestamp.py},migrations/__init__.py,models/__init__.py,selectors/{__init__.py,"{{cookiecutter.app_name}}_selector.py"},serializers/__init__.py,services/{__init__.py,"{{cookiecutter.app_name}}_service.py"},tasks/__init__.py,tests/__init__.py,views/{__init__.py,"{{cookiecutter.app_name}}_view.py"}}
 ```
 
 ## Step 4: Apps Config (Dynamic)
@@ -73,7 +73,7 @@ from django.apps import AppConfig
 
 class {{ cookiecutter.app_name|capitalize }}Config(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = '{{ cookiecutter.app_name }}'
+    name = 'apps.{{ cookiecutter.app_name }}'
     verbose_name = '{{ cookiecutter.app_verbose_name }}'
     
 ```
@@ -232,4 +232,23 @@ git push -u origin main
 
 ```bash
 cookiecutter https://github.com/your-username/drf-app-template.git --output-dir apps
+```
+
+
+## Some commands to know to use modular structure
+
+```bash
+python manage.py makemigrations app_name --settings=config.settings.base
+
+python manage.py migrate app_name --settings=config.settings.base
+
+python manage.py runserver --settings=config.settings.base
+
+In Settings Installed apps
+
+INSTALLED_APPS = [
+    ...,
+
+    "apps.app_name",
+]
 ```
