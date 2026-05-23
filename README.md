@@ -231,5 +231,5 @@ git push -u origin main
 ## Step 12: 
 
 ```bash
-cookiecutter https://github.com/your-username/drf-app-template.git
+cookiecutter https://github.com/your-username/drf-app-template.git --output-dir apps
 ```
