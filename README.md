@@ -249,6 +249,6 @@ In Settings Installed apps
 INSTALLED_APPS = [
     ...,
 
-    "apps.app_name",
+    "modules.<app_name>.apps.<app_name>Config",   # Example---> "modules.auth.apps.AuthConfig"
 ]
 ```
